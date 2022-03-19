@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import GmTiles from './GmTile';
+import "./App.css"
 
 function App() {
   let [currentAccount, setCurrentAccount] = useState('');
@@ -65,11 +66,11 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Hello There</h1>
-        <h6>{accessGranted === false ? <p>Gm to you my friend. My name is Levan and I've built a cool little app that allows you to sign my gm book if you have a particular NFT. For now, it's the developer's DAO NFT. 
+    <div className = "top-div">
+      <h1 className = "heading">Hello There</h1>
+        <h6 className='paragraph'>{accessGranted === false ? <p>Gm to you my friend. My name is Levan and I've built a cool little app that allows you to sign my gm book if you have a particular NFT. For now, it's the developer's DAO NFT. 
              Connect your wallet and see if your eligible to sign my gm book! once again gm</p> : <p> Yayyy you made it! </p>}</h6>
-                <button onClick={accessGranted ? handleSigningTheGmBook :handleClick}>{accessGranted === false ? <p>Connect Wallet</p> : 
+                <button className= "bttn" onClick={accessGranted ? handleSigningTheGmBook :handleClick}>{accessGranted === false ? <p>Connect Wallet</p> : 
                   <p>Sign the gm book!</p>}
                </button>
                <div>
