@@ -1,46 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import { ethers } from "ethers";
+import React, {useState} from 'react';
 import axios from 'axios';
-import { access } from 'fs';
+import GmTiles from './GmTile';
 
 function App() {
   let [currentAccount, setCurrentAccount] = useState('');
-  let [walletConnected, setWalletConnected] = useState(false);
-  let [gMs, setGms] = useState();
+  let [gMs, setGms] = useState([]);
   let [accessGranted, setAccessGranted] = useState(false);
-  const contractAddress = '';
-
-  //This function should be for just updating state dasall
-  const checkIfWalletIsConnected = async () => {
-    try{
-      const {ethereum} = window
-      if(!ethereum){
-        alert('Please download Metamask')
-      }
-      const accounts = await ethereum.request({method: 'eth_accounts'})
-      if(accounts.length !== 0){
-        setCurrentAccount(accounts[0]);
-        setWalletConnected(true);
-      }
-    }
-    catch(e){
-     alert(e);
-      }
-    }
 
   const connectWallet = async () => {
     try{
       const {ethereum} = window;
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner(); 
-      // const gmContract = new ethers.Contract(contractAddress, contractABI, signer);
     if(!ethereum){
         alert('Oops! you need to download metamask');
         return;
       }
     const accounts = await ethereum.request({method: 'eth_requestAccounts'});
     setCurrentAccount(accounts[0]);
-    setWalletConnected(true);
+   
 
 
     // 0xec4b34085984bb79e47fa45cdd5033f4b0e7801c
@@ -64,21 +40,44 @@ function App() {
     }
   }
 
-  useEffect(()=> {
-    checkIfWalletIsConnected();
-  }, []);
-
+  function getAllGms() {
+    if(accessGranted === true){
+          axios.get('http://localhost:5000/anime-dom/us-central1/api/gms').then((res) => {
+           setGms(res.data)
+          })
+          .catch((error) => {
+          });
+        }
+  }
 
   function handleClick() {
     connectWallet();
   }
+
+  function handleSigningTheGmBook() {
+    axios.post('http://localhost:5000/anime-dom/us-central1/api/gms', 
+    {"address": `0xec4b34085984bb79e47fa45cdd5033f4b0e7801c`}).then((res) => {
+    })
+    .catch((error) => {
+     throw(error)
+    });
+    getAllGms();
+  }
+
   return (
     <div>
       <h1>Hello There</h1>
-      <p>Gm to you my friend. My name is Levan and I've built a cool little app that allows you to sign my gm book if you have a particular NFT. For now, it's the developer's DAO NFT. Connect your wallet and see if your eligible to sign my gm book! once again gm</p>
-      <button onClick={handleClick}>Connect Wallet</button>
-      <div>
-        
+        <h6>{accessGranted === false ? <p>Gm to you my friend. My name is Levan and I've built a cool little app that allows you to sign my gm book if you have a particular NFT. For now, it's the developer's DAO NFT. 
+             Connect your wallet and see if your eligible to sign my gm book! once again gm</p> : <p> Yayyy you made it! </p>}</h6>
+                <button onClick={accessGranted ? handleSigningTheGmBook :handleClick}>{accessGranted === false ? <p>Connect Wallet</p> : 
+                  <p>Sign the gm book!</p>}
+               </button>
+               <div>
+                 {gMs.map((gm => (<GmTiles gm = {gm} key = {gm.createdAt}/>)))}
+                
+               </div>
+        <div>
+
       </div>
     </div>
   );
