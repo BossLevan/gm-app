@@ -1,5 +1,6 @@
 const { db } = require('../util/admin');
 
+//Export all users that have signed the GM book
 exports.getAllGms = (request, response) => {
 	db.collection('gms').orderBy('createdAt', 'desc')
 	.get().then((data) => {
@@ -19,6 +20,7 @@ exports.getAllGms = (request, response) => {
 		});
 };
 
+//when a user signs the GM book
 exports.createGm = (request, response) => {
     const newGm = {
         address: request.body.address,

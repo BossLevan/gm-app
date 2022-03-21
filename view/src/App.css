@@ -14,6 +14,21 @@
 .top-div {
   font-family: 'Fredoka';
   padding: 50px;
+  font-variant: "titling-caps";
+}
+
+.tileText1 {
+  font-family: 'Fredoka';
+  padding-left: 30px;
+}
+.spacing {
+  padding: 20px;
+}
+
+.tileText {
+  font-family: 'Fredoka';
+  color: grey;
+  padding-left: 30px;
 }
 
 .bttn{

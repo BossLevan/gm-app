@@ -31,11 +31,6 @@ Run the react app
     $ cd view
     $ npm start
 
-To run the functions locally
-
-    $ cd functions
-    $ firebase serve
-
 Then, open `http://localhost:3000` in a browser.
 
 If you are having problems connecting to the functions due to a CORS issue, open your terminal & run the following command:
