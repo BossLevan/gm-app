@@ -12,7 +12,7 @@ A Responsive Web application that token gates access to "signing" my gm book. Es
 
 3. NFT Port API(REST): Used to query data about the NFTs a user has in their wallet.
 
-4. Metamask: Connecting your wallet to the site
+4. Metamask: Connecting your wallet to the site (Make sure to connect your wallet that has the DeveloperDAO NFT)
 
 ### Running the App Locally
 
