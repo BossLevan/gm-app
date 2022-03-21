@@ -57,7 +57,7 @@ function App() {
 
   function handleSigningTheGmBook() {
     axios.post('http://localhost:5000/anime-dom/us-central1/api/gms', 
-    {"address": `0xec4b34085984bb79e47fa45cdd5033f4b0e7801c`}).then((res) => {
+    {"address": `${currentAccount}`}).then((res) => {
     })
     .catch((error) => {
      throw(error)
@@ -74,7 +74,7 @@ function App() {
                   <p>Sign the gm book!</p>}
                </button>
                <div>
-                 {gMs.map((gm => (<GmTiles gm = {gm} key = {gm.createdAt}/>)))}
+                 {gMs.map((gm) => (<GmTiles gm = {gm} key = {Math.random()}/>))}
                 
                </div>
         <div>
