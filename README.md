@@ -39,6 +39,7 @@ To run the functions locally
 Then, open `http://localhost:3000` in a browser.
 
 If you are having problems connecting to the functions due to a CORS issue, open your terminal & run the following command:
+
     $ open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security
 
 Goodluck!
