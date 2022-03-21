@@ -24,13 +24,15 @@ Once installed, clone the repository and install its dependencies running:
 
 You will need to get your own credentials from the NFT port website and load them in your .env file.
 
-To do so, go to [NFTport website](https://api.nftport.xyz) and get your API key.
+To do so, go to [NFTport website](https://www.nftport.xyz) and get your API key.
 
 Run the react app
+
     $ cd view
     $ npm start
 
 To run the functions locally
+
     $ cd functions
     $ firebase serve
 
